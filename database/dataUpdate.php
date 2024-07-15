@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: login.php');
+    header('Location: ../public/login.php');
     exit;
 }
 
@@ -78,6 +78,6 @@ try {
         <?php endforeach; ?>
     </table>
     <br>
-    <a href="AdminView.php">Natrag na admin stranicu</a>
+    <a href="../public/AdminView.php">Natrag na admin stranicu</a>
 </body>
 </html>

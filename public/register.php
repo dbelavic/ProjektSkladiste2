@@ -38,7 +38,7 @@
     </style>
 </head>
 <body>
-    <form action="registerProces.php" method="post">
+    <form action="../loginRegister/registerProces.php" method="post">
         <h2>Registracija</h2>
         <input type="text" name="ime" placeholder="Ime" required>
         <input type="text" name="prezime" placeholder="Prezime" required>

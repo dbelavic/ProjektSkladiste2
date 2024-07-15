@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
          // validiramo je li username u skladu sa zapisom 
         registerExceptions::validateUsername($username);
-
+        
         $dsn = DB_DRIVER . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
         $pdo = new PDO($dsn, DB_USER, DB_PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -41,11 +41,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         echo "<div style='text-align: center; justify-content: center; font-size: 20px;'>
         Registracija uspješna.<br>
-        <a href='login.php' style='color: #007bff;'>Krenite na prijavu</a>
+        <a href='../public/login.php' style='color: #007bff;'>Krenite na prijavu</a>
       </div>";
-
+      
     } catch (PDOException $e) {
-        echo "Greška: " . $e->getMessage();
+        try {
+            RegisterExceptions::handleDuplicateUsername($e);
+        } catch (Exception $ex) {
+            echo "<div style=
+            'text-align: center; 
+            justify-content: center; 
+            color: red; 
+            font-size: 20px;
+            '>" . $ex->getMessage() . "</div>";
+        }
     }
 }
 ?>

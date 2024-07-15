@@ -39,7 +39,7 @@
     </style>
 </head>
 <body>
-    <form action="loginProcess.php" method="post">
+    <form action="../loginRegister/loginProcess.php" method="post">
         <h2>Prijava korisnika</h2>
         <input type="text" name="username" placeholder="Korisničko ime" required>
         <input type="password" name="password" placeholder="Lozinka" required>

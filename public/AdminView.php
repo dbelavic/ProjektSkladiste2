@@ -47,9 +47,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <h1>Admin View - Dashboard</h1>
     <p>Dobrodošli, <br> <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
     
-    <div class="link"><a href="dataView.php">Pregledaj podatke</a></div><br>
-    <div class="link"><a href="dataCreate.php">Unesi podatke</a></div><br>
-    <div class="link"><a href="dataUpdate.php">Izmijeni podatke</a></div><br>
+    <div class="link"><a href="../database/dataView.php">Pregledaj podatke</a></div><br>
+    <div class="link"><a href="../database/dataCreate.php">Unesi podatke</a></div><br>
+    <div class="link"><a href="../database/dataUpdate.php">Izmijeni podatke</a></div><br>
     <p><br><br></p>
     <p><div class="logout">
         <a href="logout.php">Odjava</a>

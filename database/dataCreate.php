@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: login.php');
+    header('Location: ../public/login.php');
     exit;
 }
 ?>
@@ -35,6 +35,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             font-size: 16px;
             cursor: pointer;
         }
+        link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -44,8 +49,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <input type="number" name="quantity" placeholder="Količina" required>
         <input type="number" step="0.01" name="price" placeholder="Cijena" required>
         <button type="submit">Unesi podatke</button>
+        <div class="link">
+            <a href="../public/AdminView.php">Natrag na stranicu</a>
+        </div>
     </form>
-    <br>
-    <a href="AdminView.php">Natrag na admin stranicu</a>
+ 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 require_once '../config/app.php';
-require_once '../Exceptions\loginException.php'; 
+require_once '../Exceptions/loginException.php'; 
 
 session_start(); // Pokreće sesiju
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['username'] = $username;
 
             echo "Login successful.";
-            header('Location: AdminView.php');
+            header('Location: ../public/AdminView.php');
             exit;
         } else {
             throw new LoginException();
