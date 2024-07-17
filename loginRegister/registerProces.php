@@ -1,6 +1,7 @@
 <?php
 require_once '../config/app.php';
 require_once '../exceptions/registerExceptions.php';
+require_once '../config/Database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ime = htmlspecialchars($_POST['ime'], ENT_QUOTES, 'UTF-8');
@@ -24,9 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          // validiramo je li username u skladu sa zapisom 
         registerExceptions::validateUsername($username);
         
-        $dsn = DB_DRIVER . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
-        $pdo = new PDO($dsn, DB_USER, DB_PASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $database = Database::getInstance();
+        $pdo = $database->getConnection();
 
         $sql = "INSERT INTO users (ime, prezime, username, passwordUser, UserCreatedAt) 
                 VALUES (:ime, :prezime, :username, :password, :UserCreatedAt)";

@@ -6,11 +6,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 }
 
 require_once '../config/app.php';
+require_once '../config/Database.php';
 
 try {
-    $dsn = DB_DRIVER . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
-    $pdo = new PDO($dsn, DB_USER, DB_PASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $database = Database::getInstance();
+    $pdo = $database->getConnection();
 
     $sql = "SELECT * FROM products";
     $stmt = $pdo->query($sql);

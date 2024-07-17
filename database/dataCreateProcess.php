@@ -5,7 +5,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-require_once '../config/app.php';
+require_once '../config/app.php'; 
+require_once '../config/Database.php'; 
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
@@ -13,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $price = $_POST['price'];
 
     try {
-        $dsn = DB_DRIVER . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
-        $pdo = new PDO($dsn, DB_USER, DB_PASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $database = Database::getInstance();
+        $pdo = $database->getConnection();
 
         $sql = "INSERT INTO products (NameProduct, Quantity, Price) VALUES (:name, :quantity, :price)";
         $stmt = $pdo->prepare($sql);
